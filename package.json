@@ -39,7 +39,7 @@
     "lint": "eslint --max-warnings 0 . && tsc --noEmit",
     "prepare": "husky install && bob build",
     "format": "tools/format.sh",
-    "postinstall": "node tools/unZipWebRTC.js.js"
+    "postinstall": "node tools/unZipWebRTC.js"
   },
   "bugs": {
     "url": "https://github.com/daily-co/react-native-webrtc/issues"

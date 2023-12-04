@@ -21,13 +21,14 @@
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "dependencies": {
-    "adm-zip": "0.5.9",
+    "@types/react": "17.0.38",
+    "@types/react-native": "0.66.12",
     "base64-js": "1.5.1",
     "debug": "4.3.4",
+    "decompress": "^4.2.1",
     "event-target-shim": "6.0.2",
-    "tar": "6.1.11",
-    "@types/react": "17.0.38",
-    "@types/react-native": "0.66.12"
+    "request": "^2.88.2",
+    "tar": "6.1.11"
   },
   "peerDependencies": {
     "react-native": ">=0.60.0"
@@ -37,7 +38,8 @@
     "prepublishOnly": "npm run tag",
     "lint": "eslint --max-warnings 0 . && tsc --noEmit",
     "prepare": "husky install && bob build",
-    "format": "tools/format.sh"
+    "format": "tools/format.sh",
+    "postinstall": "node tools/unZipWebRTC.js.js"
   },
   "bugs": {
     "url": "https://github.com/daily-co/react-native-webrtc/issues"

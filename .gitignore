@@ -19,3 +19,4 @@ examples/GumTestApp_macOS/package-lock.json
 lib/
 src/*.js
 
+src/build_webrtc/

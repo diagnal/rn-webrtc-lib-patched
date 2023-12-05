@@ -5,7 +5,7 @@ const fs = require('fs');
 (async () => {
   if (process.platform === 'darwin') {
     const fileUrl =
-      'https://github.com/jabirmhd/react-native-webrtc/releases/download/patch%232/WebRTC.xcframework.zip';
+      'https://github.com/jabirmhd/react-native-webrtc/releases/download/patch%233/WebRTC.xcframework.zip';
     const source = './apple/WebRTC.xcframework.zip';
     const target = './apple/';
 

@@ -62,7 +62,8 @@ public class CameraCaptureController extends AbstractVideoCaptureController {
     }
 
     public CameraCaptureController(CameraEnumerator cameraEnumerator, ReadableMap constraints) {
-        super(constraints.getInt("width"), constraints.getInt("height"), constraints.getInt("frameRate"));
+        // super(constraints.getInt("width"), constraints.getInt("height"), constraints.getInt("frameRate"));
+        super(1920, 1080, constraints.getInt("frameRate"));
 
         this.cameraEnumerator = cameraEnumerator;
         this.constraints = constraints;

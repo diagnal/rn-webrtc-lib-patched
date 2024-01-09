@@ -35,3 +35,13 @@ line no. 32
 self.width = 1920;
 self.height = 1080;
 ```
+
+android/src/main/java/com/oney/WebRTCModule/CameraCaptureController.java
+
+line no. 65
+
+```java
+    // super(constraints.getInt("width"), constraints.getInt("height"), constraints.getInt("frameRate"));
+    super(1920, 1080, constraints.getInt("frameRate"));
+
+```

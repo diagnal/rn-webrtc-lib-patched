@@ -29,10 +29,8 @@
         self.usingFrontCamera = YES;
 
         self.deviceId = constraints[@"deviceId"];
-        // self.width = [constraints[@"width"] intValue];
-        // self.height = [constraints[@"height"] intValue];
-        self.width = 1920;
-        self.height = 1080;
+        self.width = [constraints[@"width"] intValue];
+        self.height = [constraints[@"height"] intValue];
         self.frameRate = [constraints[@"frameRate"] intValue];
 
         id facingMode = constraints[@"facingMode"];

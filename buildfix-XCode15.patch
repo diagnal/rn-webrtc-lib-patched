@@ -1,0 +1,43 @@
+diff --git a/sdk/objc/components/audio/RTCAudioSession.mm b/sdk/objc/components/audio/RTCAudioSession.mm
+index 550a426d36..eb41bf9131 100644
+--- a/sdk/objc/components/audio/RTCAudioSession.mm
++++ b/sdk/objc/components/audio/RTCAudioSession.mm
+@@ -22,6 +22,11 @@
+ #import "RTCAudioSessionConfiguration.h"
+ #import "base/RTCLogging.h"
+ 
++
++#ifdef __APPLE__
++#define ABSL_HAVE_THREAD_LOCAL 1
++#endif
++
+ #if !defined(ABSL_HAVE_THREAD_LOCAL)
+ #error ABSL_HAVE_THREAD_LOCAL should be defined for MacOS / iOS Targets.
+ #endif
+diff --git a/sdk/objc/components/capturer/RTCCameraVideoCapturer.m b/sdk/objc/components/capturer/RTCCameraVideoCapturer.m
+index 98d3cf9f45..34d814bac9 100644
+--- a/sdk/objc/components/capturer/RTCCameraVideoCapturer.m
++++ b/sdk/objc/components/capturer/RTCCameraVideoCapturer.m
+@@ -126,7 +126,8 @@ - (void)dealloc {
+                              position:AVCaptureDevicePositionUnspecified];
+   return session.devices;
+ #else
+-  return [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
++  AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionUnspecified];
++  return discoverySession.devices;
+ #endif
+ }
+ 
+diff --git a/sdk/objc/components/renderer/opengl/RTCDisplayLinkTimer.m b/sdk/objc/components/renderer/opengl/RTCDisplayLinkTimer.m
+index 906bb898d6..4bd94ba272 100644
+--- a/sdk/objc/components/renderer/opengl/RTCDisplayLinkTimer.m
++++ b/sdk/objc/components/renderer/opengl/RTCDisplayLinkTimer.m
+@@ -28,7 +28,7 @@ - (instancetype)initWithTimerHandler:(void (^)(void))timerHandler {
+ #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0
+     _displayLink.preferredFramesPerSecond = 30;
+ #else
+-    [_displayLink setFrameInterval:2];
++    _displayLink.preferredFramesPerSecond = 30;
+ #endif
+     [_displayLink addToRunLoop:[NSRunLoop currentRunLoop]
+                        forMode:NSRunLoopCommonModes];
